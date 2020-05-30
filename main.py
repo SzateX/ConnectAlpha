@@ -582,7 +582,7 @@ def train(net, dataset, optimizer, scheduler, start_epoch, cpu, args,
 
     train_set = BoardData(dataset)
     train_loader = DataLoader(train_set, batch_size=args.batch_size,
-                              shuffle=True, num_workers=0, pin_memory=False)
+                              shuffle=True, num_workers=4, pin_memory=False)
     losses_per_epoch = load_results(iteration + 1)
 
     logger.info("Starting training process...")
@@ -618,7 +618,7 @@ def train(net, dataset, optimizer, scheduler, start_epoch, cpu, args,
                      losses_per_batch[-1]))
                 print("Policy (actual, predicted):", policy[0].argmax().item(),
                       policy_pred[0].argmax().item())
-                print("Policy data:", policy[0]);
+                print("Policy data:", policy[0])
                 print("Policy pred:", policy_pred[0])
                 print("Value (actual, predicted):", value[0].item(),
                       value_pred[0, 0].item())
