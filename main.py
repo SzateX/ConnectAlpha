@@ -22,7 +22,7 @@ import torch.multiprocessing as mp
 from argparse import ArgumentParser
 import logging
 
-USE_CUDA = False
+USE_CUDA = True
 
 def save_as_pickle(filename, data):
     complete_name = os.path.join("./datasets/",
