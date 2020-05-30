@@ -582,7 +582,7 @@ def train(net, dataset, optimizer, scheduler, start_epoch, cpu, args,
 
     train_set = BoardData(dataset)
     train_loader = DataLoader(train_set, batch_size=args.batch_size,
-                              shuffle=True, num_workers=4, pin_memory=False)
+                              shuffle=True, num_workers=0, pin_memory=False)
     losses_per_epoch = load_results(iteration + 1)
 
     logger.info("Starting training process...")
@@ -717,11 +717,11 @@ class Arena():
             dataset.append(copy.deepcopy(encode_board(current_board)))
             print("")
             print(current_board.board)
-            if current_board.player == 0:
+            if current_board.player == 1:
                 root = UCT_search(current_board, 777, white, t)
                 policy = get_policy(root, t)
                 print("Policy: ", policy, "white = %s" % (str(w)))
-            elif current_board.player == 1:
+            elif current_board.player == 2:
                 root = UCT_search(current_board, 777, black, t)
                 policy = get_policy(root, t)
                 print("Policy: ", policy, "black = %s" % (str(b)))
